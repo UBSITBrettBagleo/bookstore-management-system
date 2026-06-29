@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/Book');
 
+router.get('/test', (req, res) => {
+    res.send('Books route is working!');
+});
+
 //Get All Books
 router.get('/', async (req, res) => {
     try {
