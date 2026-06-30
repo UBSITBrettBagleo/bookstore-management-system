@@ -1,12 +1,23 @@
 <h2>Books</h2>
 
-<p>This page will display books from MongoDB.</p>
+<button routerLink="/add-book">
+  Add New Book
+</button>
+
+<br><br>
 
 <div *ngFor="let book of books">
-  <h3>{{ book.title }}</h3>
-  <p>Author: {{ book.author }}</p>
-  <p>Genre: {{ book.genre }}</p>
-  <p>Price: ₱{{ book.price }}</p>
-  <p>Stock: {{ book.stock }}</p>
-  <hr>
+
+    <h3>{{ book.title }}</h3>
+
+    <p><strong>Author:</strong> {{ book.author }}</p>
+
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+
+    <p><strong>Price:</strong> ₱{{ book.price }}</p>
+
+    <p><strong>Stock:</strong> {{ book.stock }}</p>
+
+    <hr>
+
 </div>
