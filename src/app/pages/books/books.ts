@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BookService } from '../../services/book';
 
 @Component({
   selector: 'app-books',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './books.html',
   styleUrl: './books.css',
 })
