@@ -17,6 +17,10 @@ export class Books {
 
   ngOnInit() {
     this.bookService.getBooks().subscribe((data: any) => {
+      console.log('Type:', typeof data);
+      console.log('Is Array:', Array.isArray(data));
+      console.log('Data:', data);
+  
       this.books = data;
     });
   }
