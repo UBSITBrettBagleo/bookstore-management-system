@@ -1,0 +1,13 @@
+h2{
+    margin-bottom:20px;
+}
+
+input{
+    width:300px;
+    padding:8px;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+}

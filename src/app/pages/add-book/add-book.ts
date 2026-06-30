@@ -1,9 +1,46 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BookService } from '../../services/book';
 
 @Component({
   selector: 'app-add-book',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './add-book.html',
-  styleUrl: './add-book.css',
+  styleUrl: './add-book.css'
 })
-export class AddBook {}
+export class AddBook {
+
+  book = {
+    title: '',
+    author: '',
+    genre: '',
+    price: 0,
+    stock: 0,
+    coverImage: ''
+  };
+
+  constructor(private bookService: BookService) {}
+
+  addBook() {
+    this.bookService.addBook(this.book).subscribe({
+      next: () => {
+        alert('Book added successfully!');
+
+        this.book = {
+          title: '',
+          author: '',
+          genre: '',
+          price: 0,
+          stock: 0,
+          coverImage: ''
+        };
+      },
+      error: (err) => {
+        console.log(err);
+        alert('Failed to add book.');
+      }
+    });
+  }
+
+}
