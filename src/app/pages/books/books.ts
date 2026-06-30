@@ -1,27 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../../services/book';
 import { RouterLink } from '@angular/router';
+import { BookService } from '../../services/book';
 
 @Component({
   selector: 'app-books',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './books.html',
-  styleUrl: './books.css',
+  styleUrl: './books.css'
 })
-export class Books {
-  constructor(private bookService: BookService) {}
+export class Books implements OnInit {
 
   books: any[] = [];
 
-  ngOnInit() {
-    this.bookService.getBooks().subscribe((data: any) => {
-      console.log('Type:', typeof data);
-      console.log('Is Array:', Array.isArray(data));
-      console.log('Data:', data);
+  constructor(private bookService: BookService) {}
+
+  ngOnInit(): void {
+    this.loadBooks();
+  }
+
+  loadBooks(): void {
+    this.bookService.getBooks().subscribe({
+      next: (books) => {
+        console.log('Received:', books);
+        console.log('Length:', books.length);
   
-      this.books = data;
+        this.books = books;
+  
+        setTimeout(() => {
+          console.log('After assignment:', this.books);
+        }, 100);
+      },
+      error: (err) => console.error(err)
     });
   }
 }
