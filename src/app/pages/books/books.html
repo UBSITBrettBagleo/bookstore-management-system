@@ -4,8 +4,28 @@
 
 <ul>
   <li *ngFor="let book of books">
-    {{ book.title }} - {{ book.author }}
-  </li>
+
+    <strong>{{ book.title }}</strong>
+
+    <br>
+
+    {{ book.author }}
+
+    <br><br>
+
+    <button
+        [routerLink]="['/edit-book', book._id]">
+        Edit
+    </button>
+
+    <button
+        (click)="deleteBook(book._id)">
+        Delete
+    </button>
+
+    <hr>
+
+</li>
 </ul>
 
 <button routerLink="/add-book">

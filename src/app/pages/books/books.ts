@@ -23,16 +23,30 @@ export class Books implements OnInit {
   loadBooks(): void {
     this.bookService.getBooks().subscribe({
       next: (books) => {
-        console.log('Received:', books);
-        console.log('Length:', books.length);
-  
         this.books = books;
-  
-        setTimeout(() => {
-          console.log('After assignment:', this.books);
-        }, 100);
       },
       error: (err) => console.error(err)
     });
   }
+
+  deleteBook(id: string): void {
+
+    if (confirm('Delete this book?')) {
+
+      this.bookService.deleteBook(id).subscribe({
+
+        next: () => {
+
+          this.loadBooks();
+
+        },
+
+        error: (err) => console.error(err)
+
+      });
+
+    }
+
+  }
+
 }
