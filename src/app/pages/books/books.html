@@ -1,23 +1,31 @@
 <h2>Books</h2>
 
 <input
-  type="text"
-  placeholder="Search books..."
-  [(ngModel)]="searchText">
+    type="text"
+    placeholder="Search books..."
+    [(ngModel)]="searchText">
 
 <br><br>
-<p>Total books: {{ books.length }}</p>
 
-<ul>
-  <li *ngFor="let book of filteredBooks()">
+<p>Total books: {{ filteredBooks().length }}</p>
 
-    <strong>{{ book.title }}</strong>
+<div *ngFor="let book of filteredBooks()">
 
-    <br>
+    <img
+        *ngIf="book.coverImage"
+        [src]="book.coverImage"
+        width="120"
+        alt="Book Cover">
 
-    {{ book.author }}
+    <h3>{{ book.title }}</h3>
 
-    <br><br>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+
+    <p><strong>Price:</strong> ₱{{ book.price }}</p>
+
+    <p><strong>Stock:</strong> {{ book.stock }}</p>
 
     <button
         [routerLink]="['/edit-book', book._id]">
@@ -31,9 +39,10 @@
 
     <hr>
 
-</li>
-</ul>
+</div>
+
+<br>
 
 <button routerLink="/add-book">
-  Add New Book
+    Add New Book
 </button>

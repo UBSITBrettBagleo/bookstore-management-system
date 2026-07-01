@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BookService } from '../../services/book';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-book',
@@ -20,21 +21,19 @@ export class AddBook {
     coverImage: ''
   };
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private router: Router
+) {}
 
   addBook() {
     this.bookService.addBook(this.book).subscribe({
       next: () => {
-        alert('Book added successfully!');
 
-        this.book = {
-          title: '',
-          author: '',
-          genre: '',
-          price: 0,
-          stock: 0,
-          coverImage: ''
-        };
+        alert('Book added successfully!');
+      
+        this.router.navigate(['/']);
+      
       },
       error: (err) => {
         console.log(err);
