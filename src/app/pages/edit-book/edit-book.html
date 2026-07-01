@@ -1,1 +1,35 @@
-<p>edit-book works!</p>
+<h2>Edit Book</h2>
+
+<label>Title</label><br>
+<input type="text" [(ngModel)]="book.title">
+
+<br><br>
+
+<label>Author</label><br>
+<input type="text" [(ngModel)]="book.author">
+
+<br><br>
+
+<label>Genre</label><br>
+<input type="text" [(ngModel)]="book.genre">
+
+<br><br>
+
+<label>Price</label><br>
+<input type="number" [(ngModel)]="book.price">
+
+<br><br>
+
+<label>Stock</label><br>
+<input type="number" [(ngModel)]="book.stock">
+
+<br><br>
+
+<label>Cover Image</label><br>
+<input type="text" [(ngModel)]="book.coverImage">
+
+<br><br>
+
+<button (click)="updateBook()">
+  Save Changes
+</button>
