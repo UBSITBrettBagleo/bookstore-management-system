@@ -1,9 +1,15 @@
 <h2>Books</h2>
 
+<input
+  type="text"
+  placeholder="Search books..."
+  [(ngModel)]="searchText">
+
+<br><br>
 <p>Total books: {{ books.length }}</p>
 
 <ul>
-  <li *ngFor="let book of books">
+  <li *ngFor="let book of filteredBooks()">
 
     <strong>{{ book.title }}</strong>
 
