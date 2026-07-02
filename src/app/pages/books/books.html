@@ -28,7 +28,7 @@
     <p><strong>Stock:</strong> {{ book.stock }}</p>
 
     <p><strong>Synopsis:</strong> {{ book.description }}</p>
-    <pre>{{ book | json }}</pre>
+    
 
     <button
         [routerLink]="['/edit-book', book._id]">
