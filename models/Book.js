@@ -6,7 +6,8 @@ const BookSchema = new mongoose.Schema({
   genre: String,
   price: Number,
   stock: Number,
-  coverImage: String
+  coverImage: String,
+  description: String
 });
 
 module.exports = mongoose.model('Book', BookSchema);

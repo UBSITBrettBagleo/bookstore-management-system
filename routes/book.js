@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-//Post
+//add book
 router.post('/', async (req, res) => {
 
     try {
@@ -50,7 +50,9 @@ router.post('/', async (req, res) => {
 
             stock: req.body.stock,
 
-            coverImage: req.body.coverImage
+            coverImage: req.body.coverImage,
+
+            description: req.body.description,
 
         });
 
@@ -68,7 +70,7 @@ router.post('/', async (req, res) => {
 
 });
 
-//Put
+//update
 router.put('/:id', async (req, res) => {
 
     try {

@@ -18,7 +18,8 @@ export class AddBook {
     genre: '',
     price: 0,
     stock: 0,
-    coverImage: ''
+    coverImage: '',
+    description: ''
   };
 
   constructor(
