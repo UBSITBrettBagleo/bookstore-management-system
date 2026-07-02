@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { Home } from './pages/home/home';
-import { Dashboard } from './pages/dashboard/dashboard';
 import { Books } from './pages/books/books';
 import { AddBook } from './pages/add-book/add-book';
 import { EditBook } from './pages/edit-book/edit-book';
+import { Dashboard } from './pages/dashboard/dashboard';
 import { About } from './pages/about/about';
 import { Help } from './pages/help/help';
 

@@ -1,43 +1,93 @@
 <div class="home">
 
-    <h2>Welcome to Twilight Pages Bookstore</h2>
+    <div class="left-column">
 
-    <p>
+        <h2>Welcome to Twilight Pages Bookstore</h2>
 
-        Manage your bookstore inventory quickly and efficiently.
+        <p class="intro">
+            Welcome to the Bookstore Management System. This application allows
+            you to manage your bookstore inventory by viewing, adding, editing,
+            and deleting books stored in the MongoDB database.
+        </p>
 
-    </p>
+        <div class="feature">
 
-    <br>
+            <h3>📚 Books</h3>
 
-    <button routerLink="/books">
+            <p>
+                View all books currently stored in the database. You can edit
+                or delete existing books.
+            </p>
 
-        📚View Books
+            <button routerLink="/books">
+                Open Books
+            </button>
 
-    </button>
+        </div>
 
-    <button routerLink="/dashboard">
+        <div class="feature">
 
-        📊Dashboard
+            <h3>📊 Dashboard</h3>
 
-    </button>
+            <p>
+                View inventory statistics including total books, stock,
+                inventory value, and genres.
+            </p>
 
-    <button routerLink="/add-book">
+            <button routerLink="/dashboard">
+                Open Dashboard
+            </button>
 
-        ➕Add Book
+        </div>
 
-    </button>
+        <div class="feature">
 
-    <button routerLink="/about">
+            <h3>➕ Add Book</h3>
 
-        👤About
+            <p>
+                Add a new book by entering its title, author, genre, price,
+                stock, and cover image.
+            </p>
 
-    </button>
+            <button routerLink="/add-book">
+                Add New Book
+            </button>
 
-    <button routerLink="/help">
+        </div>
 
-        ❓Help
+    </div>
 
-    </button>
+    <div class="right-column">
+
+        <div class="info-card">
+
+            <h3>ℹ About</h3>
+
+            <p>
+                Learn about the Bookstore Management System, its technologies,
+                and project information.
+            </p>
+
+            <button routerLink="/about">
+                About
+            </button>
+
+        </div>
+
+        <div class="info-card">
+
+            <h3>❓ Help</h3>
+
+            <p>
+                Read instructions on how to use every feature of the application.
+            </p>
+
+            <button routerLink="/help">
+                Help
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
