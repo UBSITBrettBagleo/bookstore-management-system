@@ -74,13 +74,9 @@ router.put('/:id', async (req, res) => {
     try {
 
         const updatedBook = await Book.findByIdAndUpdate(
-
             req.params.id,
-
             req.body,
-
-            { new: true }
-
+            { returnDocument: 'after' }
         );
 
         res.json(updatedBook);
