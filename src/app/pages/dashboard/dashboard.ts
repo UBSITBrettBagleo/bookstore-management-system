@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookService } from '../../services/book';
 
@@ -16,7 +16,10 @@ export class Dashboard implements OnInit {
   inventoryValue = 0;
   totalGenres = 0;
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
 
@@ -41,8 +44,10 @@ export class Dashboard implements OnInit {
         );
 
         this.totalGenres = genres.size;
-
+        this.cdr.detectChanges();
       },
+
+      
 
       error: err => console.log(err)
 
