@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -16,21 +16,38 @@ export class Books implements OnInit {
   books: any[] = [];
   searchText = '';
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadBooks();
   }
 
   loadBooks(): void {
-    this.bookService.getBooks().subscribe({
-      next: (books) => {
-        this.books = books;
-      },
-      error: (err) => console.error(err)
-    });
-  }
 
+    console.log("loadBooks() called");
+  
+    this.bookService.getBooks().subscribe({
+  
+      next: (books) => {
+
+        this.books = books;
+      
+        this.cdr.detectChanges();
+      
+      },
+  
+      error: (err) => {
+  
+        console.error(err);
+  
+      }
+  
+    });
+  
+  }
   deleteBook(id: string): void {
 
     if (confirm('Delete this book?')) {
