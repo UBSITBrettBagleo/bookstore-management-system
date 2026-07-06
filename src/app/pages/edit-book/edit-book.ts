@@ -28,7 +28,7 @@ export class EditBook implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService,
- 
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +37,7 @@ export class EditBook implements OnInit {
     this.bookService.getBook(this.id).subscribe({
       next: (data) => {
         this.book = data;
+        this.cdr.detectChanges();
       },
       error: (err) => console.error(err)
     });
