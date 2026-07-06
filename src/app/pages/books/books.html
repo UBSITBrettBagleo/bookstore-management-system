@@ -7,6 +7,20 @@
 
 <br><br>
 
+<label><strong>Genre:</strong></label>
+
+<select [(ngModel)]="selectedGenre">
+
+  @for (genre of genres; track genre) {
+
+    <option [value]="genre">
+      {{ genre }}
+    </option>
+
+  }
+
+</select>
+
 <p>Total books: {{ filteredBooks().length }}</p>
 
 <div *ngFor="let book of filteredBooks()">

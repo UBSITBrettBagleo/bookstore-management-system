@@ -16,6 +16,9 @@ export class Books implements OnInit {
   books: any[] = [];
   searchText = '';
 
+  selectedGenre = 'All';
+  genres: string[] = [];
+
   constructor(
     private bookService: BookService,
     private cdr: ChangeDetectorRef
@@ -34,6 +37,24 @@ export class Books implements OnInit {
       next: (books) => {
 
         this.books = books;
+      
+        const genreSet = new Set<string>();
+      
+        this.books.forEach(book => {
+      
+          if (Array.isArray(book.genre)) {
+      
+            book.genre.forEach((g: string) => genreSet.add(g));
+      
+          } else if (book.genre) {
+      
+            genreSet.add(book.genre);
+      
+          }
+      
+        });
+      
+        this.genres = ['All', ...Array.from(genreSet).sort()];
       
         this.cdr.detectChanges();
       
@@ -71,9 +92,31 @@ export class Books implements OnInit {
   }
 
   filteredBooks() {
-    return this.books.filter(book =>
-      book.title.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-  }
 
+    return this.books.filter(book => {
+  
+      const matchesSearch =
+        book.title.toLowerCase().includes(this.searchText.toLowerCase());
+  
+      let matchesGenre = true;
+  
+      if (this.selectedGenre !== 'All') {
+  
+        if (Array.isArray(book.genre)) {
+  
+          matchesGenre = book.genre.includes(this.selectedGenre);
+  
+        } else {
+  
+          matchesGenre = book.genre === this.selectedGenre;
+  
+        }
+  
+      }
+  
+      return matchesSearch && matchesGenre;
+  
+    });
+  
+  }
 }
