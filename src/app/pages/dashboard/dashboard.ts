@@ -15,6 +15,11 @@ export class Dashboard implements OnInit {
   totalStock = 0;
   inventoryValue = 0;
   totalGenres = 0;
+  
+  averagePrice = 0;
+  
+  mostExpensiveBook: any = null;
+  cheapestBook: any = null;
 
   constructor(
     private bookService: BookService,
@@ -44,6 +49,27 @@ export class Dashboard implements OnInit {
         );
 
         this.totalGenres = genres.size;
+         // Average price
+
+         if (books.length > 0) {
+
+          this.averagePrice =
+           books.reduce((sum, book) => sum + Number(book.price), 0) /
+           books.length;
+
+         }
+
+         // Most expensive
+
+         this.mostExpensiveBook = books.reduce((max, book) =>
+         Number(book.price) > Number(max.price) ? book : max
+         );
+
+         // Cheapest
+
+         this.cheapestBook = books.reduce((min, book) =>
+         Number(book.price) < Number(min.price) ? book : min
+         );
         this.cdr.detectChanges();
       },
 
