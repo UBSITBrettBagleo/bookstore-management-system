@@ -19,6 +19,9 @@ export class Books implements OnInit {
   selectedGenre = 'All';
   genres: string[] = [];
 
+  selectedAuthor = 'All';
+  authors: string[] = [];
+
   constructor(
     private bookService: BookService,
     private cdr: ChangeDetectorRef
@@ -30,45 +33,62 @@ export class Books implements OnInit {
 
   loadBooks(): void {
 
-    console.log("loadBooks() called");
-  
+    console.log('loadBooks() called');
+
     this.bookService.getBooks().subscribe({
-  
+
       next: (books) => {
 
         this.books = books;
-      
+
+        // Build genre list
         const genreSet = new Set<string>();
-      
+
         this.books.forEach(book => {
-      
+
           if (Array.isArray(book.genre)) {
-      
+
             book.genre.forEach((g: string) => genreSet.add(g));
-      
+
           } else if (book.genre) {
-      
+
             genreSet.add(book.genre);
-      
+
           }
-      
+
         });
-      
+
         this.genres = ['All', ...Array.from(genreSet).sort()];
-      
+
+        // Build author list
+        const authorSet = new Set<string>();
+
+        this.books.forEach(book => {
+
+          if (book.author) {
+
+            authorSet.add(book.author);
+
+          }
+
+        });
+
+        this.authors = ['All', ...Array.from(authorSet).sort()];
+
         this.cdr.detectChanges();
-      
+
       },
-  
+
       error: (err) => {
-  
+
         console.error(err);
-  
+
       }
-  
+
     });
-  
+
   }
+
   deleteBook(id: string): void {
 
     if (confirm('Delete this book?')) {
@@ -85,8 +105,6 @@ export class Books implements OnInit {
 
       });
 
-      
-
     }
 
   }
@@ -94,29 +112,37 @@ export class Books implements OnInit {
   filteredBooks() {
 
     return this.books.filter(book => {
-  
+
+      // Search by title
       const matchesSearch =
         book.title.toLowerCase().includes(this.searchText.toLowerCase());
-  
+
+      // Filter by genre
       let matchesGenre = true;
-  
+
       if (this.selectedGenre !== 'All') {
-  
+
         if (Array.isArray(book.genre)) {
-  
+
           matchesGenre = book.genre.includes(this.selectedGenre);
-  
+
         } else {
-  
+
           matchesGenre = book.genre === this.selectedGenre;
-  
+
         }
-  
+
       }
-  
-      return matchesSearch && matchesGenre;
-  
+
+      // Filter by author
+      const matchesAuthor =
+        this.selectedAuthor === 'All' ||
+        book.author === this.selectedAuthor;
+
+      return matchesSearch && matchesGenre && matchesAuthor;
+
     });
-  
+
   }
+
 }

@@ -7,6 +7,22 @@
 
 <br><br>
 
+<label><strong>Author:</strong></label>
+
+<select [(ngModel)]="selectedAuthor">
+
+  @for(author of authors; track author) {
+
+    <option [value]="author">
+      {{ author }}
+    </option>
+
+  }
+
+</select>
+
+
+
 <label><strong>Genre:</strong></label>
 
 <select [(ngModel)]="selectedGenre">
