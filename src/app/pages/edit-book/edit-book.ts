@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book';
@@ -20,13 +20,15 @@ export class EditBook implements OnInit {
     genre: '',
     price: 0,
     stock: 0,
-    coverImage: ''
+    coverImage: '',
+    description: ''
   };
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bookService: BookService
+    private bookService: BookService,
+ 
   ) {}
 
   ngOnInit(): void {
