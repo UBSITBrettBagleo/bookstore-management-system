@@ -37,6 +37,9 @@ export class EditBook implements OnInit {
     this.bookService.getBook(this.id).subscribe({
       next: (data) => {
         this.book = data;
+        if (Array.isArray(this.book.genre)) {
+          this.book.genre = this.book.genre.join(', ');
+        }
         this.cdr.detectChanges();
       },
       error: (err) => console.error(err)
@@ -44,13 +47,24 @@ export class EditBook implements OnInit {
   }
 
   updateBook() {
-    this.bookService.updateBook(this.id, this.book).subscribe({
+
+    const bookToUpdate = {
+      ...this.book,
+      genre: Array.isArray(this.book.genre)
+        ? this.book.genre
+        : this.book.genre
+            .split(',')
+            .map((g: string) => g.trim())
+            .filter((g: string) => g !== '')
+    };
+  
+    this.bookService.updateBook(this.id, bookToUpdate).subscribe({
       next: () => {
         alert('Book updated successfully!');
-        this.router.navigate(['/']);
+        this.router.navigate(['/books']);
       },
       error: (err) => console.error(err)
     });
+  
   }
-
 }

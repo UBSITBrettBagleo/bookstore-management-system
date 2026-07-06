@@ -27,8 +27,17 @@ export class AddBook {
     private router: Router
 ) {}
 
-  addBook() {
-    this.bookService.addBook(this.book).subscribe({
+addBook() {
+
+  const bookToSave = {
+    ...this.book,
+    genre: this.book.genre
+      .split(',')
+      .map(g => g.trim())
+      .filter(g => g !== '')
+  };
+
+  this.bookService.addBook(bookToSave).subscribe({
       next: () => {
 
         alert('Book added successfully!');

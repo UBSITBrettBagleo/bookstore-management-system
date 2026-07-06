@@ -78,7 +78,10 @@ router.put('/:id', async (req, res) => {
         const updatedBook = await Book.findByIdAndUpdate(
             req.params.id,
             req.body,
-            { returnDocument: 'after' }
+            {
+                new: true,
+                runValidators: true
+            }
         );
 
         res.json(updatedBook);
@@ -87,8 +90,12 @@ router.put('/:id', async (req, res) => {
 
     catch (err) {
 
-        res.status(400).json({ message: err.message });
-
+        console.error(err);
+    
+        res.status(400).json({
+            message: err.message
+        });
+    
     }
 
 });
@@ -119,5 +126,6 @@ router.delete('/:id', async (req, res) => {
     }
 
 });
+
 
 module.exports = router;
