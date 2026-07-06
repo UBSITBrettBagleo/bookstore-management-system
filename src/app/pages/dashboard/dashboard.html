@@ -1,63 +1,61 @@
-<h2>Dashboard</h2>
+<h2 class="dashboard-title">Dashboard</h2>
 
-<div class="dashboard">
+<div class="dashboard-grid">
 
-    <div class="card">
-
-        <h3>Total Books</h3>
-
-        <p>{{ totalBooks }}</p>
-
+    <div class="dashboard-card">
+        <h3>📚</h3>
+        <h2>{{ totalBooks }}</h2>
+        <p>Total Books</p>
     </div>
 
-    <div class="card">
-
-        <h3>Total Stock</h3>
-
-        <p>{{ totalStock }}</p>
-
+    <div class="dashboard-card">
+        <h3>📦</h3>
+        <h2>{{ totalStock }}</h2>
+        <p>Total Stock</p>
     </div>
 
-    <div class="card">
-
-        <h3>Inventory Value</h3>
-
-        <p>₱{{ inventoryValue }}</p>
-
+    <div class="dashboard-card">
+        <h3>💰</h3>
+        <h2>₱{{ inventoryValue | number }}</h2>
+        <p>Inventory Value</p>
     </div>
 
-    <div class="card">
-
-        <h3>Genres</h3>
-
-        <p>{{ totalGenres }}</p>
-
+    <div class="dashboard-card">
+        <h3>🏷</h3>
+        <h2>{{ totalGenres }}</h2>
+        <p>Genres</p>
     </div>
 
-    <div>
-    <hr>
+    <div class="dashboard-card">
+        <h3>⭐</h3>
+        <h4>Most Expensive</h4>
 
-     <h3>Book Pricing</h3>
+        <p>{{ mostExpensiveBook?.title }}</p>
 
-      <p>
-      <strong>Average Price:</strong>
-      ₱{{ averagePrice | number:'1.2-2' }}
-     </p>
-     </div>
-
-     <div>
-     <p>
-     <strong>Most Expensive Book:</strong><br>
-     {{ mostExpensiveBook?.title }}<br>
-     ₱{{ mostExpensiveBook?.price }}
-     </p>
-     </div>
-
-     <div>
-    <p>
-     <strong>Cheapest Book:</strong><br>
-  {{ cheapestBook?.title }}<br>
-  ₱{{ cheapestBook?.price }}
-    </p>
+        <strong>
+            ₱{{ mostExpensiveBook?.price | number }}
+        </strong>
     </div>
+
+    <div class="dashboard-card">
+        <h3>📉</h3>
+        <h4>Cheapest</h4>
+
+        <p>{{ cheapestBook?.title }}</p>
+
+        <strong>
+            ₱{{ cheapestBook?.price | number }}
+        </strong>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>📖</h3>
+
+        <h2>
+            ₱{{ averagePrice | number:'1.2-2' }}
+        </h2>
+
+        <p>Average Price</p>
+    </div>
+
 </div>
