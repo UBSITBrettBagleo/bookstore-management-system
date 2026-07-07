@@ -58,4 +58,43 @@
         <p>Average Price</p>
     </div>
 
+
+    <div class="dashboard-card genre-card">
+
+        <h3>📚</h3>
+    
+        <h4>Books by Genre</h4>
+    
+        <div class="genre-list">
+    
+            <div class="dashboard-card genre-card">
+
+                <h3>🏷</h3>
+            
+                <h2>{{ totalGenres }}</h2>
+            
+                <p>Total Genres</p>
+            
+                <hr>
+            
+                <h4>Books by Genre</h4>
+            
+                <div class="genre-list">
+            
+                    @for(item of genreCounts; track item.genre){
+            
+                        <div class="genre-item">
+            
+                            <span>{{ item.genre }}</span>
+            
+                            <strong>{{ item.count }}</strong>
+            
+                        </div>
+            
+                    }
+            
+                </div>
+            
+            </div>
+
 </div>

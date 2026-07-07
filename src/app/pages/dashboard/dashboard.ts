@@ -21,6 +21,8 @@ export class Dashboard implements OnInit {
   mostExpensiveBook: any = null;
   cheapestBook: any = null;
 
+  genreCounts: { genre: string; count: number }[] = [];
+
   constructor(
     private bookService: BookService,
     private cdr: ChangeDetectorRef
@@ -33,49 +35,71 @@ export class Dashboard implements OnInit {
       next: (books: any[]) => {
 
         this.totalBooks = books.length;
-
+      
         this.totalStock = books.reduce(
           (sum, book) => sum + Number(book.stock),
           0
         );
-
+      
         this.inventoryValue = books.reduce(
-          (sum, book) => sum + (Number(book.price) * Number(book.stock)),
+          (sum, book) => sum + Number(book.price) * Number(book.stock),
           0
         );
-
-        const genres = new Set(
-          books.map(book => book.genre)
-        );
-
-        this.totalGenres = genres.size;
-         // Average price
-
-         if (books.length > 0) {
-
+      
+        // Count unique genres
+        const genreSet = new Set<string>();
+      
+        books.forEach(book => {
+          if (Array.isArray(book.genre)) {
+            book.genre.forEach((g: string) => genreSet.add(g));
+          } else if (book.genre) {
+            genreSet.add(book.genre);
+          }
+        });
+      
+        this.totalGenres = genreSet.size;
+      
+        // Average price
+        if (books.length > 0) {
           this.averagePrice =
-           books.reduce((sum, book) => sum + Number(book.price), 0) /
-           books.length;
-
-         }
-
-         // Most expensive
-
-         this.mostExpensiveBook = books.reduce((max, book) =>
-         Number(book.price) > Number(max.price) ? book : max
-         );
-
-         // Cheapest
-
-         this.cheapestBook = books.reduce((min, book) =>
-         Number(book.price) < Number(min.price) ? book : min
-         );
+            books.reduce((sum, book) => sum + Number(book.price), 0) /
+            books.length;
+        }
+      
+        // Most expensive
+        this.mostExpensiveBook = books.reduce((max, book) =>
+          Number(book.price) > Number(max.price) ? book : max
+        );
+      
+        // Cheapest
+        this.cheapestBook = books.reduce((min, book) =>
+          Number(book.price) < Number(min.price) ? book : min
+        );
+      
+        // Books by genre
+        const genreMap = new Map<string, number>();
+      
+        books.forEach(book => {
+          if (Array.isArray(book.genre)) {
+            book.genre.forEach((genre: string) => {
+              genreMap.set(genre, (genreMap.get(genre) || 0) + 1);
+            });
+          } else if (book.genre) {
+            genreMap.set(book.genre, (genreMap.get(book.genre) || 0) + 1);
+          }
+        });
+      
+        this.genreCounts = Array.from(genreMap.entries())
+          .map(([genre, count]) => ({ genre, count }))
+          .sort((a, b) => b.count - a.count);
+      
+        console.log(this.genreCounts);
+      
         this.cdr.detectChanges();
       },
-
       
 
-      error: err => console.log(err)
+          error: err => console.log(err)
 
     });
 
