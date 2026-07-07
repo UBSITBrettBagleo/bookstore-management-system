@@ -20,6 +20,7 @@ export class Dashboard implements OnInit {
   
   mostExpensiveBook: any = null;
   cheapestBook: any = null;
+  lowStockBooks: any[] = [];
 
   genreCounts: { genre: string; count: number }[] = [];
 
@@ -96,6 +97,11 @@ export class Dashboard implements OnInit {
         console.log(this.genreCounts);
       
         this.cdr.detectChanges();
+
+        // Low stock books (less than 5 copies)
+          this.lowStockBooks = books
+           .filter(book => Number(book.stock) < 5)
+          .sort((a, b) => Number(a.stock) - Number(b.stock));
       },
       
 
