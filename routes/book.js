@@ -75,6 +75,8 @@ router.put('/:id', async (req, res) => {
 
     try {
 
+        console.log(req.body);
+
         const updatedBook = await Book.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -84,18 +86,18 @@ router.put('/:id', async (req, res) => {
             }
         );
 
+        console.log(updatedBook);
+
         res.json(updatedBook);
 
-    }
-
-    catch (err) {
+    } catch (err) {
 
         console.error(err);
-    
+
         res.status(400).json({
             message: err.message
         });
-    
+
     }
 
 });

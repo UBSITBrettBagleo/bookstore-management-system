@@ -59,36 +59,6 @@
         <p>Genres</p>
     </div>
 
-    <div class="dashboard-card">
-
-        <h3>⚠️</h3>
-    
-        <h4>Low Stock</h4>
-    
-        @if(lowStockBooks.length > 0){
-    
-            @for(book of lowStockBooks; track book._id){
-    
-                <div class="low-stock-item">
-    
-                    <span>{{ book.title }}</span>
-    
-                    <strong>{{ book.stock }} left</strong>
-    
-                </div>
-    
-            }
-    
-        }
-    
-        @else{
-    
-            <p>No low stock books.</p>
-    
-        }
-    
-    </div>
-
 </div>
 
 <div>
@@ -110,5 +80,36 @@
     }
 </div>
 
+<div class="low-stock-section">
+
+    <h2 class="low-stock-title">⚠ Low Stock</h2>
+
+    @if(lowStockBooks.length > 0){
+
+        <div class="low-stock-grid">
+
+            @for(book of lowStockBooks; track book._id){
+
+            <div class="low-stock-item">
+
+                <span>{{ book.title }}</span>
+
+                <strong>{{ book.stock }} left</strong>
+
+            </div>
+
+            }
+
+        </div>
+
+    } @else {
+
+        <p class="no-low-stock">
+            No books have low stock.
+        </p>
+
+    }
+
+</div>
 
 </div>
