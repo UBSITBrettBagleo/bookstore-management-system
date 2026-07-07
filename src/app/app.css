@@ -89,3 +89,49 @@ nav a:hover{
     text-decoration:underline;
 
 }
+
+
+
+.app-container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+router-outlet{
+
+    flex:1;
+
+}
+
+.footer{
+
+    margin-top:auto;
+
+    padding:25px;
+
+    background:#5d4037;
+
+    color:white;
+
+    text-align:center;
+
+    border-top:4px solid #8d6e63;
+
+}
+
+.footer p{
+
+    margin:6px 0;
+
+}
+
+.footer strong{
+
+    font-size:18px;
+
+}
