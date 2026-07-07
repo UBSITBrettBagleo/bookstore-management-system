@@ -1,0 +1,267 @@
+.book-card{
+
+    display:flex;
+
+    gap:20px;
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+
+    align-items:flex-start;
+
+}
+
+.book-cover{
+
+    width:140px;
+
+    height:200px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    flex-shrink:0;
+
+}
+
+.book-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.book-content h3{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.author{
+
+    color:#666;
+
+    margin:8px 0 15px;
+
+}
+
+.genre-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+.genre-badge{
+
+    background:#6d4c41;
+
+    color:white;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.description{
+
+    margin-top:8px;
+
+    color:#555;
+
+    line-height:1.5;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:4;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+}
+
+.book-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:18px;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.edit-btn{
+
+    flex:1;
+
+}
+
+.delete-btn{
+
+    flex:1;
+
+}
+
+.book-card{
+
+    display:flex;
+
+    gap:20px;
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+
+}
+
+.book-cover{
+
+    width:150px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    flex-shrink:0;
+
+}
+
+.book-content{
+
+    flex:1;
+
+}
+
+.book-content h3{
+
+    margin:0 0 8px;
+
+}
+
+.author{
+
+    color:#666;
+
+    margin-bottom:12px;
+
+}
+
+.genre-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+.genre-badge{
+
+    background:#5d4037;
+
+    color:white;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.description{
+
+    margin-top:8px;
+
+    line-height:1.5;
+
+    color:#555;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:4;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+}
+
+.book-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    font-weight:bold;
+
+}
+
+.button-group{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.button-group button{
+
+    flex:1;
+
+}

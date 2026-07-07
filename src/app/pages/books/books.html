@@ -11,71 +11,120 @@
 
 <select [(ngModel)]="selectedAuthor">
 
-  @for(author of authors; track author) {
+    @for(author of authors; track author){
 
-    <option [value]="author">
-      {{ author }}
-    </option>
+        <option [value]="author">
+            {{ author }}
+        </option>
 
-  }
+    }
 
 </select>
 
-
+&nbsp;&nbsp;
 
 <label><strong>Genre:</strong></label>
 
 <select [(ngModel)]="selectedGenre">
 
-  @for (genre of genres; track genre) {
+    @for(genre of genres; track genre){
 
-    <option [value]="genre">
-      {{ genre }}
-    </option>
+        <option [value]="genre">
+            {{ genre }}
+        </option>
 
-  }
+    }
 
 </select>
 
 <p>Total books: {{ filteredBooks().length }}</p>
 
-<div *ngFor="let book of filteredBooks()">
+<div
+    class="book-card"
+    *ngFor="let book of filteredBooks()">
 
     <img
         *ngIf="book.coverImage"
         [src]="book.coverImage"
-        width="120"
-        alt="Book Cover">
+        [alt]="book.title"
+        class="book-cover">
 
-    <h3>{{ book.title }}</h3>
+    <div class="book-content">
 
-    <p><strong>Author:</strong> {{ book.author }}</p>
+        <h2>{{ book.title }}</h2>
 
-    <p><strong>Genre:</strong> {{ book.genre }}</p>
+        <p class="author">
+            {{ book.author }}
+        </p>
 
-    <p><strong>Price:</strong> ₱{{ book.price }}</p>
+        <div class="genre-list">
 
-    <p><strong>Stock:</strong> {{ book.stock }}</p>
+            @if(book.genre.length){
 
-    <p><strong>Synopsis:</strong> {{ book.description }}</p>
-    
+                @for(genre of book.genre; track genre){
 
-    <button
-        [routerLink]="['/edit-book', book._id]">
-        ✏️Edit
-    </button>
+                    <span class="genre-badge">
 
-    <button
-        (click)="deleteBook(book._id)">
-        🗑️Delete
-    </button>
+                        {{ genre }}
 
-    <hr>
+                    </span>
+
+                }
+
+            }
+
+        </div>
+
+        <h4>Synopsis</h4>
+
+        <p class="description">
+
+            {{ book.description }}
+
+        </p>
+
+        <div class="book-footer">
+
+            <span class="price">
+
+                ₱{{ book.price }}
+
+            </span>
+
+            <span class="stock">
+
+                Stock: {{ book.stock }}
+
+            </span>
+
+        </div>
+
+        <div class="button-group">
+
+            <button
+                class="edit-btn"
+                [routerLink]="['/edit-book', book._id]">
+
+                ✏️ Edit
+
+            </button>
+
+            <button
+                class="delete-btn"
+                (click)="deleteBook(book._id)">
+
+                🗑️ Delete
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
 <br>
 
 <button routerLink="/add-book">
-    Add New Book
+    ➕ Add New Book
 </button>
