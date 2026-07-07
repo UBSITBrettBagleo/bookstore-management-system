@@ -21,12 +21,6 @@
     </div>
 
     <div class="dashboard-card">
-        <h3>🏷</h3>
-        <h2>{{ totalGenres }}</h2>
-        <p>Genres</p>
-    </div>
-
-    <div class="dashboard-card">
         <h3>⭐</h3>
         <h4>Most Expensive</h4>
 
@@ -56,45 +50,35 @@
         </h2>
 
         <p>Average Price</p>
+        
     </div>
 
+    <div class="dashboard-card">
+        <h3>🏷</h3>
+        <h2>{{ totalGenres }}</h2>
+        <p>Genres</p>
+    </div>
 
-    <div class="dashboard-card genre-card">
+</div>
 
-        <h3>📚</h3>
-    
-        <h4>Books by Genre</h4>
-    
-        <div class="genre-list">
-    
-            <div class="dashboard-card genre-card">
+<div>
 
-                <h3>🏷</h3>
-            
-                <h2>{{ totalGenres }}</h2>
-            
-                <p>Total Genres</p>
-            
-                <hr>
-            
-                <h4>Books by Genre</h4>
-            
-                <div class="genre-list">
-            
-                    @for(item of genreCounts; track item.genre){
-            
-                        <div class="genre-item">
-            
-                            <span>{{ item.genre }}</span>
-            
-                            <strong>{{ item.count }}</strong>
-            
-                        </div>
-            
-                    }
-            
-                </div>
-            
-            </div>
+    <h3 class="genre-title">📚 Books by Genre</h3>
+
+<div class="genre-grid">
+
+    @for(item of genreCounts; track item.genre){
+
+        <div class="genre-box">
+
+            <span>{{ item.genre }}</span>
+
+            <strong>{{ item.count }}</strong>
+
+        </div>
+
+    }
+</div>
+
 
 </div>
